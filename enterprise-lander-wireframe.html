@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Devin Enterprise – Wireframe</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif; background: #fff; color: #000; }
+    
+    /* Nav */
+    nav { display: flex; align-items: center; justify-content: space-between; padding: 16px 48px; border-bottom: 1px solid #eaeaea; position: sticky; top: 0; background: #fff; z-index: 100; }
+    nav .logo { font-weight: 700; font-size: 18px; letter-spacing: -0.5px; }
+    nav .nav-links { display: flex; gap: 32px; font-size: 14px; color: #666; }
+    nav .nav-links a { color: #666; text-decoration: none; }
+    nav .nav-links a.active { color: #000; font-weight: 500; background: #f5f5f5; padding: 4px 12px; border-radius: 4px; }
+    nav .nav-links a:hover { color: #000; }
+    nav .nav-right { display: flex; gap: 16px; align-items: center; }
+    nav .nav-right a { font-size: 14px; color: #666; text-decoration: none; }
+    nav .nav-cta { background: #000; color: #fff; padding: 8px 16px; border-radius: 6px; font-size: 13px; font-weight: 500; text-decoration: none; }
+
+    /* Section dividers */
+    .section-border { border-bottom: 1px solid #eaeaea; }
+
+    /* Hero - Vercel-style two column */
+    .hero { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; padding: 100px 80px 80px; max-width: 1300px; margin: 0 auto; align-items: center; }
+    .hero-left h1 { font-size: 52px; font-weight: 700; letter-spacing: -2.5px; line-height: 1.08; }
+    .hero-right p { font-size: 18px; color: #666; line-height: 1.6; margin-bottom: 32px; }
+    .hero-right .cta-group { display: flex; gap: 12px; }
+    .cta-primary { display: inline-block; background: #000; color: #fff; padding: 12px 24px; border-radius: 8px; font-size: 15px; font-weight: 500; text-decoration: none; border: 1px solid #000; }
+    .cta-secondary { display: inline-block; background: #fff; color: #000; padding: 12px 24px; border-radius: 8px; font-size: 15px; font-weight: 500; text-decoration: none; border: 1px solid #eaeaea; }
+    .cta-primary:hover { background: #333; }
+    .cta-secondary:hover { border-color: #999; }
+
+    /* Hero visual */
+    .hero-visual { padding: 0 80px 80px; max-width: 1300px; margin: 0 auto; }
+    .hero-visual .placeholder { background: #fafafa; border: 1px solid #eaeaea; border-radius: 12px; height: 400px; display: flex; align-items: center; justify-content: center; color: #999; font-size: 14px; }
+
+    /* Trust strip */
+    .trust-strip { display: flex; justify-content: center; gap: 28px; padding: 20px 48px; border-top: 1px solid #eaeaea; border-bottom: 1px solid #eaeaea; background: #fafafa; flex-wrap: wrap; }
+    .trust-strip span { font-size: 12px; color: #666; letter-spacing: 0.3px; }
+    .trust-strip .dot { color: #ccc; }
+
+    /* Logos */
+    .logos-section { padding: 80px 80px; text-align: center; border-bottom: 1px solid #eaeaea; }
+    .logos-section h3 { font-size: 16px; color: #666; font-weight: 400; margin-bottom: 40px; }
+    .logos-row { display: flex; justify-content: center; align-items: center; gap: 48px; margin-bottom: 20px; flex-wrap: wrap; }
+    .logos-row .logo-item { width: 130px; height: 44px; display: flex; align-items: center; justify-content: center; font-size: 13px; color: #999; font-weight: 500; }
+
+    /* Proof Points - Vercel ROI-style */
+    .proof-points { padding: 80px 80px; max-width: 1300px; margin: 0 auto; border-bottom: 1px solid #eaeaea; }
+    .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; }
+    .stat-card { padding: 40px; border-right: 1px solid #eaeaea; }
+    .stat-card:last-child { border-right: none; }
+    .stat-card .stat-number { font-size: 24px; font-weight: 700; margin-bottom: 12px; letter-spacing: -0.5px; line-height: 1.3; }
+    .stat-card .stat-desc { font-size: 15px; color: #666; line-height: 1.5; }
+
+    /* Customer quote */
+    .customer-quote { padding: 80px 80px; max-width: 900px; margin: 0 auto; text-align: center; border-bottom: 1px solid #eaeaea; }
+    .customer-quote .quote-mark { font-size: 48px; color: #000; font-weight: 700; line-height: 1; margin-bottom: 16px; }
+    .customer-quote blockquote { font-size: 22px; line-height: 1.5; font-weight: 400; margin-bottom: 24px; }
+    .customer-quote .attribution { font-size: 14px; color: #666; }
+    .customer-quote .attribution strong { color: #000; }
+    .customer-quote .company-logo { margin-top: 12px; font-size: 18px; font-weight: 700; letter-spacing: -0.5px; }
+
+    /* Use Cases */
+    .use-cases { padding: 100px 80px; max-width: 1300px; margin: 0 auto; border-bottom: 1px solid #eaeaea; }
+    .use-cases > h2 { font-size: 14px; text-transform: uppercase; letter-spacing: 1px; color: #666; margin-bottom: 64px; }
+    .use-cases-layout { display: grid; grid-template-columns: 220px 1fr; gap: 80px; }
+    .use-cases-nav { position: sticky; top: 80px; align-self: start; }
+    .use-cases-nav a { display: block; padding: 10px 0; font-size: 14px; color: #999; text-decoration: none; border-left: 2px solid #eaeaea; padding-left: 16px; margin-bottom: 4px; transition: all 0.2s; }
+    .use-cases-nav a:hover, .use-cases-nav a.active { color: #000; border-left-color: #000; }
+    .use-case-item { padding: 60px 0; border-bottom: 1px solid #eaeaea; }
+    .use-case-item:first-child { padding-top: 0; }
+    .use-case-item:last-child { border-bottom: none; }
+    .use-case-item .uc-label { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #999; margin-bottom: 12px; }
+    .use-case-item h3 { font-size: 32px; font-weight: 700; letter-spacing: -1px; margin-bottom: 16px; }
+    .use-case-item p { font-size: 16px; color: #666; line-height: 1.7; max-width: 580px; margin-bottom: 28px; }
+    .use-case-item .uc-visual { background: #fafafa; border: 1px solid #eaeaea; border-radius: 10px; overflow: hidden; display: flex; align-items: center; justify-content: center; color: #bbb; font-size: 13px; }
+    .use-case-item .uc-visual img { width: 100%; height: auto; display: block; }
+
+    /* Mid CTA */
+    .mid-cta { text-align: center; padding: 100px 80px; border-bottom: 1px solid #eaeaea; background: #fafafa; }
+    .mid-cta h2 { font-size: 28px; font-weight: 600; letter-spacing: -0.5px; max-width: 600px; margin: 0 auto 28px; line-height: 1.4; }
+    .mid-cta .cta-primary { background: #000; color: #fff; }
+
+    /* Platform / Bento */
+    .platform { padding: 100px 80px; max-width: 1300px; margin: 0 auto; border-bottom: 1px solid #eaeaea; }
+    .platform > h2 { font-size: 36px; font-weight: 700; letter-spacing: -1.5px; margin-bottom: 56px; }
+    .bento-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 16px; }
+    .bento-card { background: #fafafa; border: 1px solid #eaeaea; border-radius: 12px; padding: 32px; display: flex; flex-direction: column; justify-content: space-between; }
+    .bento-card h4 { font-size: 16px; font-weight: 600; margin-bottom: 10px; }
+    .bento-card p { font-size: 14px; color: #666; line-height: 1.6; }
+    .bento-card .card-visual { flex: 1; margin-top: 20px; background: #f0f0f0; border: 1px solid #e5e5e5; border-radius: 8px; min-height: 100px; display: flex; align-items: center; justify-content: center; color: #bbb; font-size: 11px; overflow: hidden; }
+    .bento-card .card-visual img { width: 100%; height: auto; display: block; }
+    /* Row 1: 8/12 + 4/12 */
+    .bento-r1-left { grid-column: span 8; min-height: 300px; }
+    .bento-r1-right { grid-column: span 4; }
+    /* Row 2: 4/12 + 8/12 */
+    .bento-r2-left { grid-column: span 4; }
+    .bento-r2-right { grid-column: span 8; min-height: 300px; }
+    /* Row 3: 7/12 + 5/12 */
+    .bento-r3-left { grid-column: span 7; }
+    .bento-r3-right { grid-column: span 5; }
+
+    /* Governance */
+    .governance { padding: 100px 80px; max-width: 1300px; margin: 0 auto; border-bottom: 1px solid #eaeaea; }
+    .governance > h2 { font-size: 36px; font-weight: 700; letter-spacing: -1.5px; margin-bottom: 16px; }
+    .governance > p.gov-sub { font-size: 17px; color: #666; max-width: 640px; margin-bottom: 56px; line-height: 1.6; }
+    .gov-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: #eaeaea; margin-bottom: 48px; border: 1px solid #eaeaea; border-radius: 12px; overflow: hidden; }
+    .gov-card { background: #fff; padding: 32px; }
+    .gov-card h4 { font-size: 15px; font-weight: 600; margin-bottom: 8px; }
+    .gov-card p { font-size: 14px; color: #666; line-height: 1.5; }
+    .governance .cta-row { display: flex; gap: 12px; }
+
+    /* FDE */
+    .fde { padding: 100px 80px; max-width: 1300px; margin: 0 auto; border-bottom: 1px solid #eaeaea; }
+    .fde-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+    .fde h2 { font-size: 36px; font-weight: 700; letter-spacing: -1.5px; margin-bottom: 20px; }
+    .fde .fde-body { font-size: 16px; color: #666; line-height: 1.7; margin-bottom: 32px; }
+    .fde .fde-flow { display: flex; flex-direction: column; gap: 0; border: 1px solid #eaeaea; border-radius: 12px; overflow: hidden; }
+    .fde .fde-flow .step { display: flex; align-items: center; gap: 16px; padding: 20px 24px; border-bottom: 1px solid #eaeaea; }
+    .fde .fde-flow .step:last-child { border-bottom: none; }
+    .fde .fde-flow .step .step-num { width: 28px; height: 28px; background: #000; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; flex-shrink: 0; }
+    .fde .fde-flow .step .step-text { font-size: 14px; }
+    .fde .fde-flow .step .step-text strong { display: block; margin-bottom: 2px; }
+    .fde .fde-flow .step .step-text span { color: #666; }
+    .fde .quote-card { background: #fafafa; border: 1px solid #eaeaea; border-radius: 12px; padding: 32px; margin-top: 32px; }
+    .fde .quote-card blockquote { font-size: 16px; line-height: 1.5; margin-bottom: 12px; font-style: italic; color: #444; }
+    .fde .quote-card .attribution { font-size: 13px; color: #999; }
+
+    /* Bottom CTA */
+    .bottom-cta { text-align: center; padding: 120px 80px; }
+    .bottom-cta h2 { font-size: 42px; font-weight: 700; letter-spacing: -2px; margin-bottom: 32px; }
+
+    /* Responsive */
+    @media (max-width: 1000px) {
+      .hero { grid-template-columns: 1fr; gap: 32px; padding: 80px 32px 48px; }
+      .hero-left h1 { font-size: 38px; }
+      .stats-grid { grid-template-columns: 1fr; }
+      .stat-card { border-right: none; border-bottom: 1px solid #eaeaea; }
+      .stat-card:last-child { border-bottom: none; }
+      .use-cases-layout { grid-template-columns: 1fr; gap: 32px; }
+      .use-cases-nav { position: static; display: flex; overflow-x: auto; gap: 0; }
+      .use-cases-nav a { border-left: none; border-bottom: 2px solid #eaeaea; padding: 8px 12px; white-space: nowrap; }
+      .bento-grid { grid-template-columns: 1fr; }
+      .bento-r1-left, .bento-r1-right, .bento-r2-left, .bento-r2-right, .bento-r3-left, .bento-r3-right { grid-column: span 1; }
+      .gov-grid { grid-template-columns: 1fr; }
+      .fde-layout { grid-template-columns: 1fr; }
+      .platform, .governance, .fde, .use-cases, .proof-points, .hero-visual { padding-left: 32px; padding-right: 32px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav style="padding: 0; border-bottom: 1px solid #eaeaea;">
+  <img src="/home/ubuntu/attachments/399f1cb3-d261-4663-8207-82aee2ebdad3/image.png" alt="Devin header" style="width: 100%; height: auto; display: block;">
+</nav>
+
+<!-- SECTION 1: HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <h1>The agentic workforce for enterprise software teams.</h1>
+  </div>
+  <div class="hero-right">
+    <p>One platform to deploy parallel AI agents across every engineering workstream in your org. Fully governed, model-agnostic, and auditable by default.</p>
+    <div class="cta-group">
+      <a href="#" class="cta-primary">Talk to Sales</a>
+      <a href="#" class="cta-secondary">Watch Demo</a>
+    </div>
+  </div>
+</section>
+
+<div class="hero-visual">
+  <div class="placeholder">[ Full-width platform view: multiple parallel workstreams in flight — migrations, security remediation, test generation — across repos/teams ]</div>
+</div>
+
+<div class="trust-strip">
+  <span>Isolated on dedicated microVMs</span>
+  <span class="dot">•</span>
+  <span>Ephemeral VMs</span>
+  <span class="dot">•</span>
+  <span>No training on customer code</span>
+  <span class="dot">•</span>
+  <span>SOC 2 Type II</span>
+  <span class="dot">•</span>
+  <span>ISO 27001</span>
+  <span class="dot">•</span>
+  <span>SSO / RBAC</span>
+</div>
+
+<!-- SECTION 2: LOGOS -->
+<section class="logos-section">
+  <h3>Trusted by the best enterprise teams</h3>
+  <img src="/home/ubuntu/attachments/f2bc11a2-f6a0-4198-a462-544b3d6094ec/image.png" alt="Enterprise customer logos" style="width: 100%; max-width: 1100px; height: auto;">
+</section>
+
+<!-- SECTION 3: PROOF POINTS -->
+<section class="proof-points">
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-number">18-month migration completed in weeks</div>
+      <div class="stat-desc">Nubank compressed a 1,000-engineer ETL migration into weeks with 20x cost savings.</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">COBOL migration from 8 months to 8 days</div>
+      <div class="stat-desc">Mercedes-Benz modernized over 200,000 lines of COBOL code with Devin, cutting estimated timeline from eight months to eight days.</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">~70% of vulnerabilities auto-remediated</div>
+      <div class="stat-desc">Brazil's largest bank deployed Devin across the entire software development lifecycle. 75% of engineering teams now use Devin daily.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CUSTOMER QUOTE -->
+<section class="customer-quote">
+  <div class="quote-mark">"</div>
+  <blockquote>[ Customer quote about enterprise deployment results — timeline compression, scale, team adoption ]</blockquote>
+  <div class="attribution"><strong>Name, Title</strong></div>
+  <div class="company-logo">Company</div>
+</section>
+
+<!-- SECTION 4: USE CASES -->
+<section class="use-cases">
+  <div class="use-cases-layout">
+    <div class="use-cases-nav">
+      <a href="#" class="active">Migrations</a>
+      <a href="#">Vulnerability Remediation</a>
+      <a href="#">Test Coverage</a>
+      <a href="#">Tech Debt & Upgrades</a>
+      <a href="#">Feature Development</a>
+    </div>
+    <div class="use-cases-content">
+
+      <div class="use-case-item">
+        <div class="uc-label">Code Migrations & Modernization</div>
+        <h3>Compress migrations from months to days.</h3>
+        <p>Encode your migration rules once and Devin fans out hundreds of parallel agents across your codebase to convert legacy services, rewrite schemas, and open PRs for review across your entire codebase.</p>
+        <div class="uc-visual"><img src="/home/ubuntu/attachments/4c9bd596-8ca1-42a3-aa9c-e0e617f6470c/code+migration+and+refactor.png" alt="Multiple simultaneous PRs being generated across a migration project"></div>
+      </div>
+
+      <div class="use-case-item">
+        <div class="uc-label">Vulnerability Remediation</div>
+        <h3>Auto-remediate across hundreds of thousands of repos.</h3>
+        <p>When your SAST tools flag findings, Devin automatically investigates each one, tracing root cause, fixing, and iterating until CI passes across hundreds of thousands of repos.</p>
+        <div class="uc-visual"><img src="/home/ubuntu/attachments/d841cea1-1b7c-412e-88a4-cc309b9ac11f/vulnerability+remediation.png" alt="Devin remediating vulnerabilities at scale"></div>
+      </div>
+
+      <div class="use-case-item">
+        <div class="uc-label">Test Coverage</div>
+        <h3>Coverage targets met in days.</h3>
+        <p>Define your testing standards once and let parallel agents generate unit, integration, and framework-specific tests across every service while respecting your team's conventions and patterns.</p>
+        <div class="uc-visual"><img src="/home/ubuntu/attachments/74712feb-8496-4eb7-9ca9-0d803f6431da/test+writing.png" alt="Playbook definition and parallel test generation"></div>
+      </div>
+
+      <div class="use-case-item">
+        <div class="uc-label">Technical Debt & Upgrades</div>
+        <h3>Years of tech debt cleared in weeks.</h3>
+        <p>The necessary work your team has been avoiding for quarters. Devin runs framework upgrades, dependency updates, and dead code removal in parallel, opening clean PRs ready for review.</p>
+        <div class="uc-visual">[ Agent-generated PRs flowing through review and merged ]</div>
+      </div>
+
+      <div class="use-case-item">
+        <div class="uc-label">Feature Development</div>
+        <h3>From spec to shipped in hours.</h3>
+        <p>Devin builds from specs, launches the application, verifies user flows in a real browser, confirms behavior, and opens a PR, compressing the cycle from spec to working code from days to hours.</p>
+        <div class="uc-visual"><img src="/home/ubuntu/attachments/1fc7be89-a8ab-4e73-8321-0b9385beec63/issue+triage+and+bug+fixing.png" alt="Devin triaging and fixing an issue end-to-end"></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 5: MID CTA -->
+<section class="mid-cta">
+  <h2>See how engineering orgs with 500+ developers use Devin to automate across their SDLC.</h2>
+  <a href="#" class="cta-primary">Talk to Sales</a>
+</section>
+
+<!-- SECTION 6: PLATFORM CAPABILITIES -->
+<section class="platform">
+  <h2>Built to execute enterprise-grade work safely at scale.</h2>
+  <div class="bento-grid">
+    <!-- Row 1: 8 + 4 -->
+    <div class="bento-card bento-r1-left">
+      <div>
+        <h4>Parallel Autonomous Execution</h4>
+        <p>Delegate hundreds of tasks simultaneously. Agents work across your codebase in parallel, clearing entire project backlogs overnight.</p>
+      </div>
+      <div class="card-visual"><img src="/home/ubuntu/attachments/4c9bd596-8ca1-42a3-aa9c-e0e617f6470c/code+migration+and+refactor.png" alt="Parallel sessions running simultaneously"></div>
+    </div>
+    <div class="bento-card bento-r1-right">
+      <div>
+        <h4>Model-Agnostic Routing</h4>
+        <p>Devin routes across frontier models for each task. When pricing shifts, your workflows stay stable and costs stay controlled.</p>
+      </div>
+    </div>
+    <!-- Row 2: 4 + 8 -->
+    <div class="bento-card bento-r2-left">
+      <div>
+        <h4>Deployed in Your Cloud</h4>
+        <p>Full deployment across all major clouds. Devin runs inside your network perimeter, meaning your data always stays in your controlled environment.</p>
+      </div>
+    </div>
+    <div class="bento-card bento-r2-right">
+      <div>
+        <h4>Deep Codebase Understanding</h4>
+        <p>Ask Devin queries your codebase in real time while Deep Wiki generates self-updating architecture diagrams and documentation. Institutional context compounds with every interaction.</p>
+      </div>
+      <div class="card-visual">[ Deep Wiki / codebase graph visualization ]</div>
+    </div>
+    <!-- Row 3: 7 + 5 -->
+    <div class="bento-card bento-r3-left">
+      <div>
+        <h4>Automated Code Review</h4>
+        <p>Automated security review and visual QA across every PR, grounded in full codebase context. Devin Review catches vulnerabilities and regressions static analysis can't because it fully understands your architecture, dependencies, and patterns.</p>
+      </div>
+      <div class="card-visual"><img src="/home/ubuntu/attachments/005f7996-6ad9-415e-bcb0-be4315830b45/devinreview-light.png" alt="Devin Review catching bugs in a PR"></div>
+    </div>
+    <div class="bento-card bento-r3-right">
+      <div>
+        <h4>Event-Driven Automations</h4>
+        <p>Devin triggers intelligently from Slack mentions, Linear issues, CI failures, Snyk alerts, or PagerDuty incidents. Define conditions once and agents respond around the clock.</p>
+      </div>
+      <div class="card-visual"><img src="/home/ubuntu/attachments/31469f4d-bfbf-4610-b5d5-2990236d219a/automations-light.png" alt="Automation triggers configuration UI"></div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 7: ENTERPRISE GOVERNANCE -->
+<section class="governance">
+  <h2>One control plane for AI across your engineering org.</h2>
+  <p class="gov-sub">Devin serves as a governance layer, giving your security, compliance, and engineering leaders the visibility and control they need before anything ships to production.</p>
+  <div class="gov-grid">
+    <div class="gov-card">
+      <h4>Flexible, Secure Deployment</h4>
+      <p>Deploy inside your own cloud infrastructure or run on Cognition's managed environment. Your data never leaves your controlled perimeter.</p>
+    </div>
+    <div class="gov-card">
+      <h4>Audit Logging</h4>
+      <p>Every agent action logged at enterprise, org, and session level. Full attribution of AI-written vs. human-written code.</p>
+    </div>
+    <div class="gov-card">
+      <h4>SAML / SCIM</h4>
+      <p>Integrates with your identity provider for automatic provisioning and deprovisioning.</p>
+    </div>
+    <div class="gov-card">
+      <h4>Configurable Guardrails</h4>
+      <p>Set boundaries for each team: which repos, which tools, which network endpoints, which models.</p>
+    </div>
+    <div class="gov-card">
+      <h4>Cost Controls</h4>
+      <p>Allocate spend by project code. Set per-team budgets. Real-time visibility into usage and output.</p>
+    </div>
+    <div class="gov-card">
+      <h4>Compliance</h4>
+      <p>SOC 2 Type II. FedRAMP High. DoD IL4/5/6 available on AWS GovCloud.</p>
+    </div>
+  </div>
+  <div class="cta-row">
+    <a href="#" class="cta-secondary">Trust Center</a>
+  </div>
+</section>
+
+<!-- SECTION 8: FDE -->
+<section class="fde">
+  <div class="fde-layout">
+    <div class="fde-left">
+      <h2>Your transformation partner from day one.</h2>
+      <p class="fde-body">Cognition's Forward Deployed Engineers embed directly in your org, bringing tested playbooks from hundreds of enterprise deployments. They help identify your highest-ROI use cases, build the first implementation live against your CI/CD and internal tools, and train your team to scale independently so adoption quickly becomes structural change.</p>
+      <a href="#" class="cta-secondary">Learn About Our Implementation Team</a>
+    </div>
+    <div class="fde-right">
+      <div class="fde-flow">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-text"><strong>Identify</strong><span>Highest-ROI use cases for your codebase</span></div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-text"><strong>Implement</strong><span>Build live against your CI/CD and tools</span></div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-text"><strong>Scale</strong><span>Train your leads to run independently</span></div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-text"><strong>Document</strong><span>Playbooks that compound across the org</span></div>
+        </div>
+      </div>
+      <div class="quote-card">
+        <blockquote>"[ Customer quote about FDE experience ]"</blockquote>
+        <div class="attribution">Name, Title — Company</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 9: BOTTOM CTA -->
+<section class="bottom-cta">
+  <h2>See what your org can build with Devin.</h2>
+  <a href="#" class="cta-primary">Talk to Sales</a>
+</section>
+
+</body>
+</html>
